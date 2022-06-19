@@ -2,9 +2,9 @@
 
 Sample project
 
-- this projects aim to provide a crypto api
+- this projects aims to provide a crypto api
 
-- we use hibernate alongside spring data jpa config to load csv files from resources to an in memory h2 DB.
+- we use hibernate alongside spring data jpa config to load .csv files from resources to an in memory h2 DB.
 
 - we provide a variety of endopoints while working with an extended crud repo in order to handle requests on crypto data
 
