@@ -16,12 +16,12 @@ public class CoinService implements CoinServiceIf {
 
     @Override
     public CoinProjection oldestNewestMinMaxForSpecificCrypto(String coin) {
-        return coinRepository.oldestNewestMinMaxForSpecificCrypto(coin);
+        return coinRepository.oldestNewestMinMaxForSpecificCrypto( coin );
     }
 
     @Override
     public List<CoinProjection> oldestNewestMinMaxForEachCryptoSpecificMonth(int month) {
-        return coinRepository.oldestNewestMinMaxForEachCryptoSpecificMonth(month);
+        return coinRepository.oldestNewestMinMaxForEachCryptoSpecificMonth( month );
     }
 
     @Override
@@ -31,6 +31,6 @@ public class CoinService implements CoinServiceIf {
 
     @Override
     public NormalizedCoinProjection highestNormalizedRangeForSpecificDay(Date date) {
-        return coinRepository.highestNormalizedRangeForSpecificDay(date);
+        return coinRepository.highestNormalizedRangeForSpecificDay( date );
     }
 }

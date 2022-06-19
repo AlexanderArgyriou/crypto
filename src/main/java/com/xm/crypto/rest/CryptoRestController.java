@@ -6,6 +6,8 @@ import com.xm.crypto.service.CoinServiceIf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,23 +23,23 @@ public class CryptoRestController {
     CoinServiceIf coinService;
 
     @GetMapping("/coin/{symbol}")
-    public CoinProjection getInfoForSpecificCoin(@PathVariable String symbol) {
-        return coinService.oldestNewestMinMaxForSpecificCrypto(symbol);
+    public ResponseEntity<CoinProjection> getInfoForSpecificCoin(@PathVariable String symbol) {
+        return new ResponseEntity<>( coinService.oldestNewestMinMaxForSpecificCrypto( symbol ), HttpStatus.OK );
     }
 
     @GetMapping("/coins/all/{month}")
-    public List<CoinProjection> getInfoForEachCryptoSpecificInMonth(@PathVariable int month) {
-        return coinService.oldestNewestMinMaxForEachCryptoSpecificMonth(month);
+    public ResponseEntity<List<CoinProjection>> getInfoForEachCryptoSpecificInMonth(@PathVariable int month) {
+        return new ResponseEntity<>( coinService.oldestNewestMinMaxForEachCryptoSpecificMonth( month ), HttpStatus.OK );
     }
 
     @GetMapping("/coins/all/normalized")
-    public List<NormalizedCoinProjection> getDescListNormalizedRangeForEachCoin() {
-        return coinService.descListNormalizedRangeForEachCoin();
+    public ResponseEntity<List<NormalizedCoinProjection>> getDescListNormalizedRangeForEachCoin() {
+        return new ResponseEntity<>( coinService.descListNormalizedRangeForEachCoin(), HttpStatus.OK );
     }
 
     @GetMapping("/coins/all/normalized/highest")
-    public NormalizedCoinProjection getHighestNormalizedRangeForSpecificDay(@RequestParam("date")
-                                                                            @DateTimeFormat(pattern = "dd-MM-yyyy") Date date) {
-        return coinService.highestNormalizedRangeForSpecificDay(date);
+    public ResponseEntity<NormalizedCoinProjection> getHighestNormalizedRangeForSpecificDay(@RequestParam("date")
+                                                                                            @DateTimeFormat(pattern = "dd-MM-yyyy") Date date) {
+        return new ResponseEntity<>( coinService.highestNormalizedRangeForSpecificDay( date ), HttpStatus.OK );
     }
 }
